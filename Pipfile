@@ -1,0 +1,13 @@
+[[source]]
+url = "https://pypi.org/simple"
+verify_ssl = true
+name = "pypi"
+
+[packages]
+
+[dev-packages]
+mypackage = {editable = true, path = "."}
+build = "*"
+
+[requires]
+python_version = "3" # TODO: lock python version to MAJOR.MINOR
