@@ -32,6 +32,7 @@
         //  DEP: "onCreateCommand" changes .venv/ owner to vscode
         "type=volume,target=${containerWorkspaceFolder}/.venv/"
     ],
+    "remoteUser": "vscode",
     "containerEnv": {
         "LANG": "${localEnv:LANG}",
         "PIPENV_VENV_IN_PROJECT": "1",
