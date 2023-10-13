@@ -8,6 +8,9 @@
     "files.trimTrailingWhitespace": true,
     /* Extensions **/
     "markdownlint.run": "onSave",
+    "material-icon-theme.folders.associations": {
+        "mypackage": "src"
+    },
     "mypy-type-checker.args": [
         "--ignore-missing-imports",
         "--show-column-numbers",
