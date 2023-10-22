@@ -82,7 +82,7 @@ if ((INSTALL_SYS_DEV_PACKAGES && ${#SYS_DEV_PACKAGES[@]})); then
     eval "$CMD_SYS_INSTALL ${SYS_DEV_PACKAGES[*]@Q}"
 fi
 if ((INSTALL_PIP_BUILD_PACKAGES && ${#PIP_BUILD_PACKAGES[@]})); then
-    for package in "${PIP_DEV_PACKAGES[@]}"; do
+    for package in "${PIP_BUILD_PACKAGES[@]}"; do
         eval "$CMD_PIP_INSTALL $package"
     done
 fi
