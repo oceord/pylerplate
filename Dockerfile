@@ -14,6 +14,7 @@ RUN apt-get update && apt-get upgrade -y \
     && useradd --create-home --system --gid python python \
     && chown -R python /mypackage/
 USER python
+ENV PATH="/home/python/.local/bin:${PATH}"
 RUN pip install --upgrade pip
 
 ########## BUILD #######################################################################
@@ -24,7 +25,7 @@ RUN ./scripts/install_meta_packages.sh --install-pip-build-packages  \
 
 FROM base AS build
 COPY --chown=python --from=package-build /mypackage/dist/ dist/
-RUN pip install --no-cache-dir --find-links dist/ mypackage
+RUN pip install --user --no-cache-dir --find-links dist/ mypackage
 
 FROM build AS build-slim
 RUN rm -r *
