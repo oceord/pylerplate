@@ -70,12 +70,12 @@ Happy hacking!
 ## Contributing
 
 If you have any suggestion to improve this boilerplate, you can either open an issue or submit a pull request.
-Either one of those will be analysed (once I have the time to do so) and provided with feedback.
-Please do keep in mind that any modification should be in line this project's reasoning described in the *What is pylerplate?* section above.
+Either one of those will be analyzed (once I have the time to do so) and provided with feedback.
+Please do keep in mind that any modification should be in line this project's reasoning described in the [*What is pylerplate?*](#what-is-pylerplate) section above.
 
 ## License
 
-Distributed under the MIT License. See LICENSE for more information.
+Distributed under the MIT License. See [LICENSE](./LICENSE) for more information.
 
 ## Acknowledgements
 
