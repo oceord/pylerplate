@@ -21,11 +21,11 @@ help: ## Show this help menu
 		awk 'BEGIN {FS=":.* ## "}; {printf "\t%-23s %s\n", $$1, $$2};'
 
 .print-phony:
-	@echo -en "\n.PHONY: "
-	@grep -e '^[a-z|_|-]*:.* ##' $(MAKEFILE_LIST) | \
+	@echo -n "\n.PHONY: "
+	@grep '^[a-z|_|-]*:.* ##' $(MAKEFILE_LIST) | \
 		sort | \
 		awk 'BEGIN {FS=":.* ## "}; {printf "%s ", $$1};'
-	@echo -e "\n"
+	@echo "\n"
 
 ####### COMMANDS #######################################################################
 
