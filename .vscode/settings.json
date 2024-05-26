@@ -1,11 +1,16 @@
 {
-    /* Editor and Explorer **/
-    "explorer.excludeGitIgnore": true,
     /** On Save **/
     "editor.formatOnSave": true,
     "files.insertFinalNewline": true,
     "files.trimFinalNewlines": true,
     "files.trimTrailingWhitespace": true,
+    "notebook.formatOnSave.enabled": true,
+    /* Features **/
+    "explorer.excludeGitIgnore": true,
+    "notebook.diff.ignoreMetadata": true,
+    "notebook.diff.ignoreOutputs": true,
+    "notebook.diff.overviewRuler": true,
+    "notebook.output.wordWrap": true,
     /* Extensions **/
     "markdownlint.run": "onSave",
     "material-icon-theme.folders.associations": {
@@ -21,6 +26,7 @@
     /* Editor settings for Python **/
     "[python]": {
         "editor.codeActionsOnSave": {
+            "source.fixAll.python": "explicit",
             "source.organizeImports": "explicit"
         },
         "editor.defaultFormatter": "ms-python.black-formatter"
