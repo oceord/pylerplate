@@ -84,7 +84,7 @@ format: ## Format the entire codebase
 		echo Applying ruff... && \
 		ruff format $(SRC) tests && \
 		echo Done. ; \
-	else echo SKIPPED. Run 'make pipenv-dev-install' first. >&2 ; fi
+	else echo "SKIPPED (ruff not found)" >&2 ; fi
 
 lint: ## Perform a static code analysis
 	@if \
@@ -96,11 +96,15 @@ lint: ## Perform a static code analysis
 		echo Applying mypy... && \
 		mypy --show-error-context --show-column-numbers --pretty $(SRC) tests && \
 		echo Done. ; \
-	else echo SKIPPED. Run 'make pipenv-dev-install' first. >&2 ; fi
+	else echo "SKIPPED (ruff and/or mypy not found)" >&2 ; fi
 
 pipenv-dev-install: ## Create dev venv
-	@pipenv run pip install --upgrade pip
-	@pipenv install --dev --ignore-pipfile --deploy
+	@PIPENV_VERBOSITY=-1 pipenv run pip install --upgrade pip
+	@if [ -f "/workspaces/pylerplate/Pipfile.lock" ]; then \
+		PIPENV_VERBOSITY=-1 pipenv install --dev --ignore-pipfile --deploy; \
+	else \
+		PIPENV_VERBOSITY=-1 pipenv install --dev; \
+	fi
 
 run-dev: ## Run for a dev env
 	@echo TODO: Not Implemented; exit 1;
