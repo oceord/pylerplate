@@ -48,20 +48,19 @@ git clone https://github.com/oceord/pylerplate.git && \
   - Rename the main source module
   - Replace the `mypackage` expression throughout the source-code
 - [ ] Choose a proper LICENSE (or just replace `2023 oceord`)
-- [ ] Update setup.cfg
+- [ ] Update `pyproject.toml`
 - [ ] Choose a Python version and lock it throughout the source-code
   - Search for `MAJOR.MINOR`
-  - NOTE: Debian is used as the base distribution for everything docker-related
-    - To change this:
-      1. Replace the expression `-bookworm` in Dockerfile
-      2. Replace the base image of devcontainer.json
-      3. Replace all the `apt` commands (if required)
+- [ ] Debian is used as the base distribution for everything docker-related. To change this:
+    1. Replace the expression `-bookworm` in Dockerfile
+    2. Replace the base image of devcontainer.json
+    3. Replace all the `apt` commands (if required)
 - [ ] Decide wether to use a src-layout or flat-layout
   - More information [here](https://packaging.python.org/en/latest/discussions/src-layout-vs-flat-layout/)
   - If a flat-layout is chosen, move the project main module to the root and update Makefile > `SRC`
-- [ ] Generate Pipenv.lock with `pipenv lock`
-- [ ] Pin dependencies in ./scripts/install_meta_packages.sh with their versions
+- [ ] Pin system dependencies in `./scripts/install_meta_packages.sh` with their versions
 - [ ] Set up the devcontainer and launch it
+- [ ] Generate Pipenv.lock with `pipenv lock`
 - [ ] Replace this README
 
 And that's it.
