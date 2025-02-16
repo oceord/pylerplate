@@ -100,7 +100,7 @@ lint: ## Perform a static code analysis
 
 pipenv-dev-install: ## Create dev venv
 	@PIPENV_VERBOSITY=-1 pipenv run pip install --upgrade pip
-	@if [ -f "/workspaces/pylerplate/Pipfile.lock" ]; then \
+	@if [ -f "Pipfile.lock" ]; then \
 		PIPENV_VERBOSITY=-1 pipenv install --dev --ignore-pipfile --deploy; \
 	else \
 		PIPENV_VERBOSITY=-1 pipenv install --dev; \
