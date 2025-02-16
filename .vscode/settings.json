@@ -12,7 +12,6 @@
     "notebook.diff.overviewRuler": true,
     "notebook.output.wordWrap": true,
     /* Extensions **/
-    "markdownlint.run": "onSave",
     "material-icon-theme.folders.associations": {
         "mypackage": "src"
     },
@@ -29,5 +28,10 @@
             "source.organizeImports": "explicit"
         },
         "editor.defaultFormatter": "charliermarsh.ruff"
-    }
+    },
+    "notebook.codeActionsOnSave": {
+        "notebook.source.fixAll.python": "explicit",
+        "notebook.source.organizeImports": "explicit"
+    },
+    "notebook.defaultFormatter": "charliermarsh.ruff",
 }
