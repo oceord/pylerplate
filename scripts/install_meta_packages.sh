@@ -13,7 +13,9 @@ PIP_BUILD_PACKAGES=(
 )
 SYS_DEV_PACKAGES=()
 PIP_DEV_PACKAGES=(
+    mypy
     pipenv
+    ruff
 )
 CMD_SYS_INSTALL="apt-get update && apt-get install --no-install-recommends -y"
 CMD_SYS_CLEANUP="apt-get autoremove -y && apt-get clean -y && rm -rf /var/lib/apt/lists/*"
@@ -25,7 +27,7 @@ usage() {
 Usage: $(basename "${BASH_SOURCE[0]}") [-h|--help] [--debug] [--install-system-common-packages] [--install-system-dev-packages] [--install-pip-build-packages] [--install-pip-dev-packages] [--use-pipx]
 
 Script to install meta-dependencies for mypackage.
-NOTE: meta-dependencies are dempendencies of the dependencies.
+NOTE: meta-dependencies are dependencies of the dependencies.
 
 Available options:
 

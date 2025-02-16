@@ -21,6 +21,7 @@
             // TODO: lock python version to MAJOR.MINOR
             "version": "3",
             "installTools": "true",
+            "toolsToInstall": "pipx",
             "optimize": "false"
         }
     },
