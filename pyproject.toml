@@ -54,7 +54,6 @@ ignore = [
 ]
 
 [tool.ruff.lint.extend-per-file-ignores]
-# Also ignore `E402` in all `__init__.py` files.
 "*.ipynb" = [
     # Allow public structures without docstrings
     "D100", # undocumented-public-module
