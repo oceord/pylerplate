@@ -79,10 +79,10 @@ docker-test: ## Test project in a docker image
 
 format: ## Format the entire codebase
 	@if \
-	type black >/dev/null 2>&1 ; then \
+	type ruff >/dev/null 2>&1 ; then \
 		echo Formatting source-code... && \
-		echo Applying black... && \
-		black $(SRC) tests && \
+		echo Applying ruff... && \
+		ruff format $(SRC) tests && \
 		echo Done. ; \
 	else echo SKIPPED. Run 'make pipenv-dev-install' first. >&2 ; fi
 
@@ -92,7 +92,7 @@ lint: ## Perform a static code analysis
 	type mypy >/dev/null 2>&1 ; then \
 		echo Linting source-code... && \
 		echo Applying ruff... && \
-		ruff $(SRC) tests && \
+		ruff check $(SRC) tests && \
 		echo Applying mypy... && \
 		mypy --show-error-context --show-column-numbers --pretty $(SRC) tests && \
 		echo Done. ; \
