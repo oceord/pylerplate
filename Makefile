@@ -1,6 +1,6 @@
 # Makefile to gather common commands
 
-.PHONY: build check clean docker-build-dev docker-build-prod docker-open-shell docker-run-dev docker-scan docker-test format help lint pipenv-dev-install run-dev run-prod test version
+.PHONY: build check clean docker-build-dev docker-build-prod docker-test format help lint pipenv-dev-install print-phony run-dev run-prod set-up-git-hooks test version
 .DEFAULT_GOAL := help
 
 # Project variables
@@ -20,12 +20,16 @@ help: ## Show this help menu
 		sort | \
 		awk 'BEGIN {FS=":.* ## "}; {printf "\t%-23s %s\n", $$1, $$2};'
 
-.print-phony:
+print-phony:
 	@echo -n "\n.PHONY: "
-	@grep '^[a-z|_|-]*:.* ##' $(MAKEFILE_LIST) | \
+	@grep '^[a-z|_|-]*:.*' $(MAKEFILE_LIST) | \
 		sort | \
-		awk 'BEGIN {FS=":.* ## "}; {printf "%s ", $$1};'
+		awk 'BEGIN {FS=":.*"}; {printf "%s ", $$1};'
 	@echo "\n"
+
+set-up-git-hooks: ## Set up git hooks
+	@mkdir -p .git/hooks
+	@cp .githooks/* .git/hooks
 
 ####### COMMANDS #######################################################################
 
@@ -115,5 +119,5 @@ run-prod: ## Run for a prod environment with the necessary precautions (e.g., no
 test: ## Perform tests
 	@echo TODO: Not Implemented; exit 1;
 
-version: ## Display current dev version
+print-version: ## Display current local version
 	@echo Version: $(TAG)
