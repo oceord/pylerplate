@@ -12,4 +12,5 @@ sudo ./scripts/install_meta_packages.sh \
 ./scripts/install_meta_packages.sh --use-pipx \
     --install-pip-dev-packages
 
-cp .githooks/pre-commit .git/hooks
+mkdir -p .git/hooks
+cp .githooks/* .git/hooks
