@@ -6,6 +6,7 @@ set -o pipefail
 
 # TODO: lock package versions
 SYS_COMMON_PACKAGES=(
+    gnupg2
     make
 )
 PIP_BUILD_PACKAGES=(
