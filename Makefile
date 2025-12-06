@@ -1,15 +1,7 @@
 # Makefile to gather common commands
 
-.PHONY: build check clean docker-build-dev docker-build-prod docker-test format help lint pipenv-dev-install print-phony run-dev run-prod set-up-git-hooks test version
+.PHONY: build bump clean format help lint nox print-phony set-up-git-hooks test
 .DEFAULT_GOAL := help
-
-# Project variables
-MODULE:=mypackage
-SRC:=src/$(MODULE)
-
-# Command overrides
-# In docker-related commands, provide DOCKER=podman to use podman instead of docker
-DOCKER:=docker
 
 # Fetch from git tags the current dev version string, if not found use seconds since epoch
 TAG := $(shell git describe --tags --always --dirty --broken 2>/dev/null || date +%s)
@@ -35,12 +27,7 @@ set-up-git-hooks: ## Set up git hooks
 
 build: ## Build a distribution for the package
 	$(info Building distribution artifacts...)
-	@python -m build --wheel
-	@echo Done.
-
-check: ## Check source-code for known security vulnerabilities
-	$(info Checking code for known security vulnerabilities...)
-	@pipenv check
+	@uv build
 	@echo Done.
 
 clean: ## Clean up auxiliary and temporary files from the workspace
@@ -52,72 +39,24 @@ clean: ## Clean up auxiliary and temporary files from the workspace
 	@find . -maxdepth 2 -type d -name '*.egg-info'  -exec rm -r {} +
 	@echo Done.
 
-docker-build-dev: ## Build a docker dev image. Example: make docker-build-dev VERSION=1.0.0
-	$(if $(VERSION),,$(error VERSION is undefined.))
-	$(info Building dev image '$(MODULE):$(VERSION)'...)
-	@sed \
-		-e 's|{NAME}|$(MODULE)|g' \
-		-e 's|{VERSION}|$(VERSION)|g' \
-		Dockerfile | \
-		$(DOCKER) build -t $(MODULE):$(VERSION) --target dev -f- .
-	@echo Done.
-
-docker-build-prod: ## Build a docker prod image. Example: make docker-build-prod VERSION=1.0.0
-	$(if $(VERSION),,$(error VERSION is undefined.))
-	$(info Building prod image '$(MODULE)-prod:$(VERSION)'...)
-	@sed \
-		-e 's|{NAME}|$(MODULE)|g' \
-		-e 's|{VERSION}|$(VERSION)|g' \
-		Dockerfile | \
-		$(DOCKER) build -t $(MODULE)-prod:$(VERSION) --target prod -f- .
-	@echo Done.
-
-docker-test: ## Test project in a docker image
-	$(info Building and running test image '$(MODULE):$(TAG)'...)
-	@sed \
-		-e 's|{NAME}|$(MODULE)|g' \
-		-e 's|{VERSION}|$(TAG)|g' \
-		Dockerfile | \
-		$(DOCKER) build -t $(MODULE):$(TAG) --target test -f- .
-	@echo Done.
-
 format: ## Format the entire codebase
-	@if \
-	type ruff >/dev/null 2>&1 ; then \
-		echo Formatting source-code... && \
-		echo Applying ruff... && \
-		ruff format $(SRC) tests && \
-		echo Done. ; \
-	else echo "SKIPPED (ruff not found)" >&2 ; fi
+	@echo Applying ruff... && \
+	ruff format && \
+	echo Done. ;
 
 lint: ## Perform a static code analysis
-	@if \
-	type ruff >/dev/null 2>&1 && \
-	type mypy >/dev/null 2>&1 ; then \
-		echo Linting source-code... && \
-		echo Applying ruff... && \
-		ruff check $(SRC) tests && \
-		echo Applying mypy... && \
-		mypy --show-error-context --show-column-numbers --pretty $(SRC) tests && \
-		echo Done. ; \
-	else echo "SKIPPED (ruff and/or mypy not found)" >&2 ; fi
+	@echo Linting source-code... && \
+	echo Applying ruff... && \
+	ruff check && \
+	echo Applying pyrefly... && \
+	pyrefly check && \
+	echo Done. ; \
 
-pipenv-dev-install: ## Create dev venv
-	@PIPENV_VERBOSITY=-1 pipenv run pip install --upgrade pip
-	@if [ -f "Pipfile.lock" ]; then \
-		PIPENV_VERBOSITY=-1 pipenv install --dev --ignore-pipfile --deploy; \
-	else \
-		PIPENV_VERBOSITY=-1 pipenv install --dev; \
-	fi
+nox: ## Run nox tests
+	@echo Running nox tests... && \
+	nox --default-venv-backend uv
 
-run-dev: ## Run for a dev env
+test: nox ## Run tests
+
+bump: ## Bump package version
 	@echo TODO: Not Implemented; exit 1;
-
-run-prod: ## Run for a prod environment with the necessary precautions (e.g., no debug)
-	@echo TODO: Not Implemented; exit 1;
-
-test: ## Perform tests
-	@echo TODO: Not Implemented; exit 1;
-
-print-version: ## Display current local version
-	@echo Version: $(TAG)
