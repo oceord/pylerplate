@@ -1,6 +1,6 @@
 # Makefile to gather common commands
 
-.PHONY: build bump clean format help lint nox print-phony set-up-git-hooks test
+.PHONY: build bump clean format help lint nox print-phony test
 .DEFAULT_GOAL := help
 
 # Fetch from git tags the current dev version string, if not found use seconds since epoch
@@ -18,10 +18,6 @@ print-phony:
 		sort | \
 		awk 'BEGIN {FS=":.*"}; {printf "%s ", $$1};'
 	@echo "\n"
-
-set-up-git-hooks: ## Set up git hooks
-	@mkdir -p .git/hooks
-	@cp .githooks/* .git/hooks
 
 ####### COMMANDS #######################################################################
 
