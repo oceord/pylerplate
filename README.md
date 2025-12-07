@@ -4,83 +4,215 @@
 ![uv](https://img.shields.io/badge/uv-DE5FE9?style=for-the-badge&logo=astral&logoColor=white)
 ![Ruff](https://img.shields.io/badge/ruff-D7FF64?style=for-the-badge&logo=ruff&logoColor=000000)
 ![Pyrefly](https://img.shields.io/badge/pyrefly-FF6B35?style=for-the-badge&logo=meta&logoColor=white)
+![Nox](https://img.shields.io/badge/nox-4051B5?style=for-the-badge)
 ![Make](https://img.shields.io/badge/make-3e474a?style=for-the-badge&logo=gnu&logoColor=ffffff)
 ![VSCode](https://img.shields.io/badge/vscode-2c2c32?style=for-the-badge&logo=visualstudiocode&logoColor=22a8f1)
 
-## What is pylerplate?
+> A modern, minimal Python project boilerplate with batteries included
 
-**pylerplate** is a modern Python project boilerplate designed to eliminate the repetitive setup work when starting new projects.
-It comes pre-configured with essential development tools, sensible defaults, and minimal boilerplate—giving you a clean foundation to build upon.
+**pylerplate** eliminates the repetitive setup work when starting new Python projects.
+It comes pre-configured with modern development tools, sensible defaults, and a clean structure—giving you a solid foundation to build upon immediately.
 
-### Key Features
+## ✨ Features
 
-- **Modern tooling**: Pre-configured with the latest Python development tools
-- **Minimal configuration**: Essential settings only, most left intentionally blank for customization
-- **VSCode optimized**: IDE settings included (though any editor works)
-- **CI/CD ready**: Basic workflows for development, testing, and production
-- **Standards-compliant**: Follows Python community best practices
+- 🚀 **Modern Python tooling** - uv, Ruff, Pyrefly, and Nox configured out-of-the-box
+- 📦 **Dependency management** - Fast, reliable dependency resolution with uv
+- 🧹 **Code quality** - Automatic formatting and comprehensive linting
+- ✅ **Type checking** - Static analysis with Pyrefly
+- 🧪 **Testing framework** - Nox sessions for isolated test environments
+- 📝 **Standards compliant** - Follows PEP standards and Python best practices
+- 🔧 **Makefile automation** - Common tasks accessible via simple make commands
+- 💻 **VSCode optimized** - IDE settings included (works with any editor)
+- 🎯 **Minimal configuration** - Essential settings only, ready for customization
 
-### Why pylerplate?
+## 🚦 Quick Start
 
-Starting a new Python project often means repeating the same setup tasks: configuring linters, formatters, test runners, dependency management, and more.
-Existing boilerplates were either too opinionated or missing key modern tools.
+### Prerequisites
 
-**pylerplate** strikes a balance—it's opinionated enough to get you started quickly, but flexible enough to adapt to your needs.
+- Python 3.12 or higher
+- [uv](https://github.com/astral-sh/uv) (recommended) or pip
+- make (optional, but recommended)
 
-#### Use this boilerplate if you
+### Installation
 
-- ✅ Want modern development tools configured out-of-the-box
-- ✅ Need a quick Python environment for experimentation or testing
-- ✅ Value clean, organized project structure
-- ✅ Follow CI/CD workflows and engineering best practices
-- ✅ Prefer standards-based Python development
-
-## Getting Started
-
-Clone the repository, remove the git history, and open in VSCode:
+Clone the repository and set up your new project:
 
 ```bash
-git clone https://github.com/oceord/pylerplate.git mypackage && \
-  rm -rf mypackage/.git/ && \
-  code mypackage
+# Clone and prepare your project
+git clone https://github.com/oceord/pylerplate.git myproject
+cd myproject
+rm -rf .git/
+
+# Initialize a new git repository
+git init
+git add .
+git commit -m "Initial commit from pylerplate"
 ```
 
-### Setup Checklist
+### Customization Checklist
 
-After cloning, customize the boilerplate for your project:
+Complete these steps to make the boilerplate your own:
 
-- [ ] **Name your project**
-  - Rename the `mypackage` directory to your package name
-  - Find and replace `mypackage` throughout the codebase
-- [ ] **Update `LICENSE`**
-  - Choose an appropriate license
-  - Update copyright holder (currently `2023 oceord`)
-- [ ] **Configure `pyproject.toml`**
-  - Add project metadata (name, description, author, etc.)
-  - Specify dependencies
-- [ ] **Review TODOs**
-  - Search for `TODO` comments and address them
-- [ ] **Replace this README**
-  - Document your actual project
+#### 1. **Rename your package**
 
-**That's it!**
-Happy hacking! 🚀
+```bash
+# Rename the package directory
+mv src/mypackage src/yourpackage
 
-## Contributing
+# Find and replace throughout the codebase
+# Search for: mypackage
+# Replace with: yourpackage
+```
+
+#### 2. **Update project metadata in `pyproject.toml`**
+
+```toml
+[project]
+name = "yourpackage"
+version = "0.1.0"
+description = "Your project description"
+authors = [{ name = "Your Name", email = "your.email@example.com" }]
+keywords = ["keyword1", "keyword2"]
+```
+
+#### 3. **Choose a license**
+
+Update the `LICENSE` file and copyright information:
+
+- Replace `Copyright (c) 2023 oceord` with your copyright notice
+- Choose an appropriate license for your project
+
+#### 4. **Add dependencies**
+
+```bash
+# Add runtime dependencies
+uv add requests httpx
+
+# Add development dependencies
+uv add --dev pytest pytest-cov
+
+# Or edit pyproject.toml directly
+```
+
+#### 5. **Clean up and customize**
+
+- [ ] Search for `TODO` comments and address them
+- [ ] Review and update `README.md` (replace this file)
+- [ ] Adjust Ruff and Pyrefly settings as needed
+
+## 🛠️ Development
+
+### Available Make Commands
+
+```bash
+make help              # Show all available commands
+make format            # Format code with Ruff
+make lint              # Run static analysis (Ruff + Pyrefly)
+make test              # Run tests with Nox
+make build             # Build distribution packages
+make clean             # Remove build artifacts and caches
+```
+
+### Manual Commands
+
+If you prefer not to use Make:
+
+```bash
+# Format code
+ruff format
+
+# Lint code
+ruff check
+pyrefly check
+
+# Run tests
+nox
+
+# Build distribution
+uv build
+```
+
+### Project Structure
+
+```text
+pylerplate/
+├── src/
+│   └── mypackage/          # Main package directory
+│       └── __init__.py
+├── tests/                  # Test directory
+│   └── __init__.py
+├── Makefile               # Task automation
+├── noxfile.py            # Nox test sessions
+├── pyproject.toml        # Project configuration
+├── LICENSE               # Project license
+└── README.md            # This file
+```
+
+## 🧪 Testing
+
+This boilerplate uses Nox for testing, which creates isolated virtual environments for each test session:
+
+```bash
+# Run all test sessions
+make test
+
+# Or run specific sessions
+nox -s lint      # Run linting only
+nox -s typing    # Run type checking only
+```
+
+## 📚 Tools Included
+
+| Tool        | Purpose                                    | Documentation                             |
+| ----------- | ------------------------------------------ | ----------------------------------------- |
+| **uv**      | Fast Python package installer and resolver | [docs](https://docs.astral.sh/uv/)        |
+| **Ruff**    | Extremely fast Python linter and formatter | [docs](https://docs.astral.sh/ruff/)      |
+| **Pyrefly** | Modern type checker for Python             | [docs](https://pyrefly.org/en/docs/)      |
+| **Nox**     | Flexible test automation                   | [docs](https://nox.thea.codes/)           |
+| **Make**    | Task automation and workflow management    | [tutorial](https://makefiletutorial.com/) |
+
+## 🤔 Should I Use This?
+
+**Use pylerplate if you:**
+
+- ✅ Want modern development tools configured immediately
+- ✅ Need a quick Python environment for experimentation
+- ✅ Value clean, organized project structure
+- ✅ Follow engineering best practices and standards
+- ✅ Prefer minimal but sensible defaults
+
+**Look elsewhere if you:**
+
+- ❌ Prefer older, more established tooling (setuptools, black, etc.)
+
+## 🤝 Contributing
 
 Contributions are welcome! Whether you've found a bug, have a feature suggestion, or want to improve the boilerplate:
 
-- **Open an issue** to discuss your idea
-- **Submit a pull request** with your improvements
+1. **Open an issue** to discuss your idea
+2. **Fork the repository** and create a feature branch
+3. **Submit a pull request** with your improvements
 
-All contributions will be reviewed with feedback.
-Please ensure suggestions align with pylerplate's philosophy of being a simple, modern, and minimally-opinionated boilerplate (see [What is pylerplate?](#what-is-pylerplate)).
+Please ensure your contributions align with pylerplate's philosophy: **modern, minimal, and practical**.
 
-## License
+## 📄 License
 
 Distributed under the MIT License.
 See [`LICENSE`](./LICENSE) for more information.
 
-## Acknowledgements
+## 🙏 Acknowledgements
 
-- [AlexanderWillner](https://github.com/AlexanderWillner)'s elegant `help` target implementation in his [Makefile](https://github.com/AlexanderWillner/python-boilerplate/blob/master/Makefile#L9-L16)
+- [AlexanderWillner](https://github.com/AlexanderWillner) for the elegant Makefile help target implementation
+- The teams behind uv, Ruff, Pyrefly, and Nox for their excellent tools
+
+## 📮 Support
+
+If you encounter issues or have questions:
+
+- 🐛 [Report a bug](https://github.com/oceord/pylerplate/issues/new?labels=bug)
+- 💡 [Request a feature](https://github.com/oceord/pylerplate/issues/new?labels=enhancement)
+- 💬 [Start a discussion](https://github.com/oceord/pylerplate/discussions)
+
+---
+
+**Happy coding!** 🚀
