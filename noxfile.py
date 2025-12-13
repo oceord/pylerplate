@@ -8,7 +8,9 @@ def lint(session: Session) -> None:
     session.run("ruff", "check")
 
 
-@nox.session
+@nox.session(python=["3.12", "3.13"])
 def typing(session: Session) -> None:
+    session.install(".")
+    session.install("--group", "dev")
     session.install("pyrefly")
     session.run("pyrefly", "check")

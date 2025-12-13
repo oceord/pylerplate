@@ -12,9 +12,6 @@
     "notebook.diff.overviewRuler": true,
     "notebook.output.wordWrap": true,
     /* Extensions **/
-    "material-icon-theme.folders.associations": {
-        "mypackage": "src"
-    },
     "python.analysis.showHoverGoToLinks": false,
     "python.languageServer": "None",
     "python.defaultInterpreterPath": "${workspaceFolder}/.venv/bin/python",

@@ -7,7 +7,6 @@
         "meta.pyrefly",
         "ms-python.python",
         "ms-toolsai.jupyter",
-        "tamasfe.even-better-toml",
         "timonwong.shellcheck",
         "yzhang.markdown-all-in-one",
     ]

@@ -12,7 +12,7 @@ requires-python = ">=3.12"     # TODO: lock python version requirements
 dependencies = []
 
 [dependency-groups]
-dev = ["nox>=2025.11.12"]
+dev = ["nox"]
 
 [tool.setuptools.dynamic]
 readme = { file = ["README.md"], content-type = "text/markdown" }
@@ -43,7 +43,7 @@ ignore = [
 task-tags = ["HACK"]
 
 [tool.ruff.lint.extend-per-file-ignores]
-"*.ipynb" = [
+"**/*.ipynb" = [
     # Allow public structures without docstrings
     "D100", # undocumented-public-module
     "D101", # undocumented-public-class
@@ -54,7 +54,45 @@ task-tags = ["HACK"]
     "D106", # undocumented-public-nested-class
     "D107", # undocumented-public-init
     # Allow print statements
-    "T20", # flake8-print
+    "T201",
+    "T203",
+    # Allow using generic name df
+    "PD901",
+]
+"notebooks/**.py" = [
+    # Allow public structures without docstrings
+    "D100", # undocumented-public-module
+    "D101", # undocumented-public-class
+    "D102", # undocumented-public-method
+    "D103", # undocumented-public-function
+    "D104", # undocumented-public-package
+    "D105", # undocumented-magic-method
+    "D106", # undocumented-public-nested-class
+    "D107", # undocumented-public-init
+    # Allow print statements
+    "T201",
+    "T203",
+    # Allow implicit name package without __init__.py
+    "INP001",
+]
+"tests/**.py" = [
+    # Allow public structures without docstrings
+    "D100", # undocumented-public-module
+    "D101", # undocumented-public-class
+    "D102", # undocumented-public-method
+    "D103", # undocumented-public-function
+    "D104", # undocumented-public-package
+    "D105", # undocumented-magic-method
+    "D106", # undocumented-public-nested-class
+    "D107", # undocumented-public-init
+    # Allow using assert
+    "S101",
+    # Allow magic value in comparison
+    "PLR2004",
+    # Allow missing annotations
+    "ANN",
+    # Allow implicit name package without __init__.py
+    "INP001",
 ]
 
 [tool.ruff.lint.isort]
