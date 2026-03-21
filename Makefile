@@ -21,6 +21,11 @@ print-phony:
 
 ####### COMMANDS #######################################################################
 
+hooks: ## Set up local git hooks
+	@echo Setting up pre-commit hooks... && \
+	uvx pre-commit install && \
+	echo Done.
+
 build: ## Build a distribution for the package
 	@Building distribution artifacts... && \
 	uv build && \
