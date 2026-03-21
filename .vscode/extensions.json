@@ -1,11 +1,11 @@
 {
     "recommendations": [
         "charliermarsh.ruff",
-        "christian-kohler.path-intellisense",
         "davidanson.vscode-markdownlint",
         "foxundermoon.shell-format",
         "meta.pyrefly",
         "ms-python.python",
+        "ms-python.vscode-pylance",
         "ms-toolsai.jupyter",
         "timonwong.shellcheck",
         "yzhang.markdown-all-in-one",
