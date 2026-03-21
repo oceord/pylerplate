@@ -12,12 +12,10 @@ help: ## Show this menu
 		sort | \
 		awk 'BEGIN {FS=":.* ## "}; {printf "\t%-10s %s\n", $$1, $$2};'
 
-phony:
-	@echo -n "\n.PHONY: " && \
-	grep '^[a-z|_|-]*:.*' $(MAKEFILE_LIST) | \
-		sort | \
-		awk 'BEGIN {FS=":.*"}; {printf "%s ", $$1};' && \
-	echo "\n"
+phony: ## Update .PHONY
+	@TARGETS=$$(grep -E '^[a-z|_|-]+:.*##' $(MAKEFILE_LIST) | cut -d: -f1 | sort | xargs); \
+	sed -i "s/^\.PHONY: .*/.PHONY: $$TARGETS/" $(MAKEFILE_LIST)
+	@echo "Successfully updated .PHONY line."
 
 ####### COMMANDS #######################################################################
 
