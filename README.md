@@ -35,27 +35,6 @@ It comes pre-configured with modern development tools, sensible defaults, and a 
 - [uv](https://github.com/astral-sh/uv) (recommended) or pip
 - make (optional, but recommended)
 
-### Installation
-
-Clone the repository and set up your new project:
-
-```bash
-# Clone and prepare your project
-git clone https://github.com/oceord/pylerplate.git myproject
-cd myproject
-rm -rf .git/
-
-# Initialize a new git repository
-git init
-
-# Set up the virtual environment and install git hooks
-make dev
-
-# Commit the initial state
-git add .
-git commit -m "Initial commit from pylerplate"
-```
-
 ### Customization Checklist
 
 Complete these steps to make the boilerplate your own:
@@ -106,6 +85,29 @@ uv add --dev pytest pytest-cov
 - Search for `TODO` comments and address them
 - Review and update `README.md` (replace this file)
 - Adjust Ruff and Pyrefly settings as needed
+
+### Setup
+
+Clone the repository and set up your new project:
+
+```bash
+# Clone and prepare your project
+git clone https://github.com/oceord/pylerplate.git myproject
+cd myproject
+rm -rf .git/
+
+# Perform the Customization Checklist
+
+# Initialize a new git repository
+git init
+
+# Set up the virtual environment and install git hooks
+make dev
+
+# Commit the initial state
+git add .
+git commit -m "Initial commit from pylerplate"
+```
 
 ## Development
 

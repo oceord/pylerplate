@@ -16,8 +16,11 @@ dev = [
     "nox",
 ]
 
-[tool.setuptools.dynamic]
-readme = { file = ["README.md"], content-type = "text/markdown" }
+[tool.codespell]
+ignore-words = ".codespell-ignore"
+
+[tool.pyrefly]
+project-includes = ["src", "tests", "noxfile.py"]
 
 [tool.ruff]
 extend-include = ["tests/**/*.py", "noxfile.py"]
@@ -30,7 +33,7 @@ skip-magic-trailing-comma = true
 [tool.ruff.lint]
 select = ["ALL"]
 ignore = [
-    # Allow public structures without docstrings
+
     "D100", # undocumented-public-module
     "D101", # undocumented-public-class
     "D102", # undocumented-public-method
@@ -39,14 +42,32 @@ ignore = [
     "D105", # undocumented-magic-method
     "D106", # undocumented-public-nested-class
     "D107", # undocumented-public-init
-    # Ignore rules fixed by the formatter
+
+    # --- Recommended by Ruff (Formatter Compatibility) ---
+    # These rules are disabled to avoid conflicts with the Ruff formatter.
+    # See: https://docs.astral.sh/ruff/formatter/#conflicting-lint-rules
+    "W191",   # tab-indentation
+    "E111",   # indentation-with-invalid-multiple
+    "E114",   # indentation-with-invalid-multiple-comment
+    "E117",   # over-indented
+    "D206",   # docstring-tab-indentation
+    "D300",   # triple-single-quotes
+    "Q000",   # bad-quotes-inline-string
+    "Q001",   # bad-quotes-multiline-string
+    "Q002",   # bad-quotes-docstring
+    "Q003",   # avoidable-escaped-quote
+    "Q004",   # unnecessary-escaped-quote
     "COM812", # missing-trailing-comma
+    "COM819", # prohibited-trailing-comma
+    "ISC001", # recommended to disable to avoid conflicts with formatter
+    "ISC002", # multi-line-implicit-string-concatenation
+
 ]
 task-tags = ["HACK"]
 
 [tool.ruff.lint.extend-per-file-ignores]
 "**/*.ipynb" = [
-    # Allow public structures without docstrings
+
     "D100", # undocumented-public-module
     "D101", # undocumented-public-class
     "D102", # undocumented-public-method
@@ -55,14 +76,10 @@ task-tags = ["HACK"]
     "D105", # undocumented-magic-method
     "D106", # undocumented-public-nested-class
     "D107", # undocumented-public-init
-    # Allow print statements
-    "T201",
-    "T203",
-    # Allow using generic name df
-    "PD901",
+    "T201", # print
+    "T203", # pprint
 ]
 "tests/**.py" = [
-    # Allow public structures without docstrings
     "D100", # undocumented-public-module
     "D101", # undocumented-public-class
     "D102", # undocumented-public-method
@@ -71,14 +88,10 @@ task-tags = ["HACK"]
     "D105", # undocumented-magic-method
     "D106", # undocumented-public-nested-class
     "D107", # undocumented-public-init
-    # Allow using assert
-    "S101",
-    # Allow magic value in comparison
-    "PLR2004",
-    # Allow missing annotations
-    "ANN",
-    # Allow implicit name package without __init__.py
-    "INP001",
+    "S101", # assert
+    "PLR2004", # magic-value-comparison
+    "ANN", # flake8-annotations
+    "INP001", # implicit-namespace-package
 ]
 
 [tool.ruff.lint.isort]
@@ -87,5 +100,5 @@ split-on-trailing-comma = false
 [tool.ruff.lint.pydocstyle]
 convention = "google"
 
-[tool.pyrefly]
-project-includes = ["src", "tests", "noxfile.py"]
+[tool.setuptools.dynamic]
+readme = { file = ["README.md"], content-type = "text/markdown" }
