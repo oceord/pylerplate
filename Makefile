@@ -33,20 +33,20 @@ clean: ## Clean up auxiliary and temporary files from the workspace
 
 format: ## Format the entire codebase
 	@echo Applying ruff... && \
-	uv tool run ruff format && \
+	uvx ruff format && \
 	echo Done.
 
 lint: ## Perform a static code analysis
 	@echo Linting source-code... && \
 	echo Applying ruff... && \
-	uv tool run ruff check && \
+	uvx ruff check && \
 	echo Applying pyrefly... && \
-	uv tool run pyrefly check && \
+	uvx pyrefly check && \
 	echo Done.
 
 nox: ## Run nox tests
 	@echo Running nox tests... && \
-	uv tool run nox --default-venv-backend uv
+	uvx nox --default-venv-backend uv
 
 test: nox ## Run tests
 
