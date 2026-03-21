@@ -5,6 +5,7 @@
 ![Ruff](https://img.shields.io/badge/ruff-D7FF64?style=for-the-badge&logo=ruff&logoColor=000000)
 ![Pyrefly](https://img.shields.io/badge/pyrefly-FF6B35?style=for-the-badge&logo=meta&logoColor=white)
 ![Nox](https://img.shields.io/badge/nox-4051B5?style=for-the-badge)
+![pre-commit](https://img.shields.io/badge/pre--commit-FAB040?style=for-the-badge&logo=precommit&logoColor=black)
 ![Make](https://img.shields.io/badge/make-3e474a?style=for-the-badge&logo=gnu&logoColor=ffffff)
 ![VSCode](https://img.shields.io/badge/vscode-2c2c32?style=for-the-badge&logo=visualstudiocode&logoColor=22a8f1)
 
@@ -15,7 +16,8 @@ It comes pre-configured with modern development tools, sensible defaults, and a 
 
 ## Features
 
-- **Modern Python tooling** - uv, Ruff, Pyrefly, and Nox configured out-of-the-box
+- **Modern Python tooling** - uv, Ruff, Pyrefly, Nox, and pre-commit configured out-of-the-box
+- **Git Hooks** - Automated pre-commit checks to ensure code quality before every commit
 - **Dependency management** - Fast, reliable dependency resolution with uv
 - **Code quality** - Automatic formatting and comprehensive linting
 - **Type checking** - Static analysis with Pyrefly
@@ -45,6 +47,11 @@ rm -rf .git/
 
 # Initialize a new git repository
 git init
+
+# Set up the virtual environment and install git hooks
+make dev
+
+# Commit the initial state
 git add .
 git commit -m "Initial commit from pylerplate"
 ```
@@ -106,11 +113,10 @@ uv add --dev pytest pytest-cov
 
 ```bash
 make help              # Show all available commands
-make format            # Format code with Ruff
-make lint              # Run static analysis (Ruff + Pyrefly)
-make test              # Run tests with Nox
-make build             # Build distribution packages
-make clean             # Remove build artifacts and caches
+make format            # Format source code
+make check             # Lint and static analysis
+make test              # Run tests (via Nox)
+make build             # Build distribution artifacts
 ```
 
 ### Manual Commands
@@ -163,13 +169,14 @@ nox -s typing    # Run type checking only
 
 ## Tools Included
 
-| Tool        | Purpose                                    | Documentation                             |
-| ----------- | ------------------------------------------ | ----------------------------------------- |
-| **uv**      | Fast Python package installer and resolver | [docs](https://docs.astral.sh/uv/)        |
-| **Ruff**    | Extremely fast Python linter and formatter | [docs](https://docs.astral.sh/ruff/)      |
-| **Pyrefly** | Modern type checker for Python             | [docs](https://pyrefly.org/en/docs/)      |
-| **Nox**     | Flexible test automation                   | [docs](https://nox.thea.codes/)           |
-| **Make**    | Task automation and workflow management    | [tutorial](https://makefiletutorial.com/) |
+| Tool           | Purpose                                                                | Documentation                              |
+| -------------- | ---------------------------------------------------------------------- | ------------------------------------------ |
+| **uv**         | Fast Python package installer and resolver                             | [docs](https://docs.astral.sh/uv/)         |
+| **Ruff**       | Extremely fast Python linter and formatter                             | [docs](https://docs.astral.sh/ruff/)       |
+| **Pyrefly**    | Modern type checker for Python                                         | [docs](https://pyrefly.org/en/docs/)       |
+| **Nox**        | Flexible test automation                                               | [docs](https://nox.thea.codes/)            |
+| **pre-commit** | Framework for managing and maintaining multi-language pre-commit hooks | [docs](https://pre-commit.com/)            |
+| **Make**       | Task automation and workflow management                                | [docs](https://www.gnu.org/software/make/) |
 
 ## Usage Scenarios
 
@@ -202,8 +209,8 @@ See [`LICENSE`](./LICENSE) for more information.
 
 ## Acknowledgements
 
-- [AlexanderWillner](https://github.com/AlexanderWillner) for the elegant Makefile help target implementation
-- The teams behind uv, Ruff, Pyrefly, and Nox for their excellent tools
+- [AlexanderWillner](https://github.com/AlexanderWillner) for the elegant Makefile [example](https://github.com/AlexanderWillner/python-boilerplate/blob/master/Makefile)
+- The teams behind [uv](https://docs.astral.sh/uv/), [Ruff](https://docs.astral.sh/ruff/), [Pyrefly](https://pyrefly.org/), [Nox](https://nox.thea.codes/en/stable/index.html), and [pre-commit](https://pre-commit.com/) for their excellent tools
 
 ## Support
 

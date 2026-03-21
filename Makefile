@@ -1,18 +1,18 @@
 # Makefile to gather common commands
 
-.PHONY: build bump clean format help lint nox print-phony test
+.PHONY: build bump check dev format help hooks nox phony prune test
 .DEFAULT_GOAL := help
 
 # Fetch from git tags the current dev version string, if not found use seconds since epoch
 TAG := $(shell git describe --tags --always --dirty --broken 2>/dev/null || date +%s)
 
-help: ## Show this help menu
-	@Available make commands: && \
-	grep -e '^[a-z|_|-]*:.* ##' $(MAKEFILE_LIST) | \
+help: ## Show this menu
+	@echo "Available commands:"
+	@grep -e '^[a-z|_|-]*:.* ##' $(MAKEFILE_LIST) | \
 		sort | \
-		awk 'BEGIN {FS=":.* ## "}; {printf "\t%-23s %s\n", $$1, $$2};'
+		awk 'BEGIN {FS=":.* ## "}; {printf "\t%-10s %s\n", $$1, $$2};'
 
-print-phony:
+phony:
 	@echo -n "\n.PHONY: " && \
 	grep '^[a-z|_|-]*:.*' $(MAKEFILE_LIST) | \
 		sort | \
@@ -21,39 +21,42 @@ print-phony:
 
 ####### COMMANDS #######################################################################
 
-hooks: ## Set up local git hooks
-	@echo Setting up pre-commit hooks... && \
+dev: hooks ## Initialize local development
+	@echo "Syncing environment..." && \
+	uv sync && \
+	echo "Environment ready."
+
+hooks: ## Install git hooks
+	@echo "Setting up pre-commit hooks..." && \
 	uvx pre-commit install && \
-	echo Done.
+	echo "Done."
 
-build: ## Build a distribution for the package
-	@Building distribution artifacts... && \
+build: ## Build distribution artifacts
+	@echo "Building distribution artifacts..." && \
 	uv build && \
-	echo Done.
+	echo "Done."
 
-clean: ## Clean up auxiliary and temporary files from the workspace
-	@Cleaning auxiliary and temporary files... && \
+prune: ## Clean workspace
+	@echo "Cleaning workspace..." && \
 	bash scripts/prune.sh && \
-	echo Done.
+	echo "Done."
 
-format: ## Format the entire codebase
-	@echo Applying ruff... && \
+format: ## Format source code
+	@echo "Applying ruff format..." && \
 	uvx ruff format && \
-	echo Done.
+	echo "Done."
 
-lint: ## Perform a static code analysis
-	@echo Linting source-code... && \
-	echo Applying ruff... && \
+check: ## Lint and static analysis
+	@echo "Running static analysis (Ruff & Pyrefly)..." && \
 	uvx ruff check && \
-	echo Applying pyrefly... && \
 	uvx pyrefly check && \
-	echo Done.
+	echo "Analysis complete."
 
-nox: ## Run nox tests
-	@echo Running nox tests... && \
+nox: ## Run full test matrix
+	@echo "Running nox tests..." && \
 	uvx nox --default-venv-backend uv
 
 test: nox ## Run tests
 
 bump: ## Bump package version
-	@echo TODO: Not Implemented; exit 1
+	@echo "TODO: Not Implemented"; exit 1
