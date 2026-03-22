@@ -4,7 +4,7 @@
 ![uv](https://img.shields.io/badge/uv-DE5FE9?style=for-the-badge&logo=astral&logoColor=white)
 ![Ruff](https://img.shields.io/badge/ruff-D7FF64?style=for-the-badge&logo=ruff&logoColor=000000)
 ![Pyrefly](https://img.shields.io/badge/pyrefly-FF6B35?style=for-the-badge&logo=meta&logoColor=white)
-![Nox](https://img.shields.io/badge/nox-4051B5?style=for-the-badge)
+![Tox](https://img.shields.io/badge/tox-grey?style=for-the-badge)
 ![pre-commit](https://img.shields.io/badge/pre--commit-FAB040?style=for-the-badge&logo=precommit&logoColor=black)
 ![Make](https://img.shields.io/badge/make-3e474a?style=for-the-badge&logo=gnu&logoColor=ffffff)
 ![VSCode](https://img.shields.io/badge/vscode-2c2c32?style=for-the-badge&logo=visualstudiocode&logoColor=22a8f1)
@@ -16,12 +16,12 @@ It comes pre-configured with modern development tools, sensible defaults, and a 
 
 ## Features
 
-- **Modern Python tooling** - uv, Ruff, Pyrefly, Nox, and pre-commit configured out-of-the-box
+- **Modern Python tooling** - uv, Ruff, Pyrefly, Tox, and pre-commit configured out-of-the-box
 - **Git Hooks** - Automated pre-commit checks to ensure code quality before every commit
 - **Dependency management** - Fast, reliable dependency resolution with uv
 - **Code quality** - Automatic formatting and comprehensive linting
 - **Type checking** - Static analysis with Pyrefly
-- **Testing framework** - Nox sessions for isolated test environments
+- **Testing framework** - Tox environments for isolated test runs
 - **Standards compliant** - Follows PEP standards and Python best practices
 - **Makefile automation** - Common tasks accessible via simple make commands
 - **VSCode optimized** - IDE settings included (works with any editor)
@@ -117,7 +117,7 @@ git commit -m "Initial commit from pylerplate"
 make help              # Show all available commands
 make format            # Format source code
 make check             # Lint and static analysis
-make test              # Run tests (via Nox)
+make test              # Run tests (via Tox)
 make build             # Build distribution artifacts
 ```
 
@@ -127,14 +127,14 @@ If you prefer not to use Make:
 
 ```bash
 # Format code
-ruff format
+uvx ruff format
 
 # Lint code
-ruff check
-pyrefly check
+uvx ruff check
+uvx pyrefly check
 
 # Run tests
-nox
+uvx --with tox-uv tox
 
 # Build distribution
 uv build
@@ -149,24 +149,24 @@ pylerplate/
 │       └── __init__.py
 ├── tests/                  # Test directory
 │   └── __init__.py
-├── Makefile               # Task automation
-├── noxfile.py            # Nox test sessions
-├── pyproject.toml        # Project configuration
-├── LICENSE               # Project license
-└── README.md            # This file
+├── Makefile                # Task automation
+├── pyproject.toml          # Project configuration
+├── LICENSE                 # Project license
+├── README.md               # This file
+└── tox.toml                # Tox environments
 ```
 
 ## Testing
 
-This boilerplate uses Nox for testing, which creates isolated virtual environments for each test session:
+This boilerplate uses Tox for testing, which creates isolated virtual environments for each environment:
 
 ```bash
-# Run all test sessions
+# Run all environments
 make test
 
-# Or run specific sessions
-nox -s lint      # Run linting only
-nox -s typing    # Run type checking only
+# Or run specific environments
+uvx --with tox-uv tox -e lint               # Run linting only
+uvx --with tox-uv tox -e py312-typecheck    # Run type checking only
 ```
 
 ## Tools Included
@@ -176,7 +176,7 @@ nox -s typing    # Run type checking only
 | **uv**         | Fast Python package installer and resolver                             | [docs](https://docs.astral.sh/uv/)         |
 | **Ruff**       | Extremely fast Python linter and formatter                             | [docs](https://docs.astral.sh/ruff/)       |
 | **Pyrefly**    | Modern type checker for Python                                         | [docs](https://pyrefly.org/en/docs/)       |
-| **Nox**        | Flexible test automation                                               | [docs](https://nox.thea.codes/)            |
+| **Tox**        | Flexible test automation                                               | [docs](https://tox.wiki/)                  |
 | **pre-commit** | Framework for managing and maintaining multi-language pre-commit hooks | [docs](https://pre-commit.com/)            |
 | **Make**       | Task automation and workflow management                                | [docs](https://www.gnu.org/software/make/) |
 
@@ -212,7 +212,7 @@ See [`LICENSE`](./LICENSE) for more information.
 ## Acknowledgements
 
 - [AlexanderWillner](https://github.com/AlexanderWillner) for the elegant Makefile [example](https://github.com/AlexanderWillner/python-boilerplate/blob/master/Makefile)
-- The teams behind [uv](https://docs.astral.sh/uv/), [Ruff](https://docs.astral.sh/ruff/), [Pyrefly](https://pyrefly.org/), [Nox](https://nox.thea.codes/en/stable/index.html), and [pre-commit](https://pre-commit.com/) for their excellent tools
+- The teams behind [uv](https://docs.astral.sh/uv/), [Ruff](https://docs.astral.sh/ruff/), [Pyrefly](https://pyrefly.org/), [Tox](https://tox.wiki/),, and [pre-commit](https://pre-commit.com/) for their excellent tools
 
 ## Support
 

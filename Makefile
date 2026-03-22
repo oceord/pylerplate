@@ -47,14 +47,15 @@ format: ## Format source code
 check: ## Lint and static analysis
 	@echo "Running static analysis (Ruff & Pyrefly)..." && \
 	uvx ruff check && \
+	uvx ruff format --check && \
 	uvx pyrefly check && \
 	echo "Analysis complete."
 
-nox: ## Run full test matrix
-	@echo "Running nox tests..." && \
-	uvx nox --default-venv-backend uv
+tox: ## Run full test matrix
+	@echo "Running tox tests..." && \
+	uvx --with tox-uv tox run-parallel --quiet
 
-test: nox ## Run tests
+test: tox ## Run tests
 
 bump: ## Bump package version
 	@echo "TODO: Not Implemented"; exit 1

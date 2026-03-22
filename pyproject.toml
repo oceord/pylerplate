@@ -12,9 +12,7 @@ requires-python = ">=3.12"     # TODO: lock python version requirements
 dependencies = []
 
 [dependency-groups]
-dev = [
-    "nox",
-]
+dev = []
 
 [tool.codespell]
 ignore-words = ".codespell-ignore"
@@ -80,18 +78,18 @@ task-tags = ["HACK"]
     "T203", # pprint
 ]
 "tests/**.py" = [
-    "D100", # undocumented-public-module
-    "D101", # undocumented-public-class
-    "D102", # undocumented-public-method
-    "D103", # undocumented-public-function
-    "D104", # undocumented-public-package
-    "D105", # undocumented-magic-method
-    "D106", # undocumented-public-nested-class
-    "D107", # undocumented-public-init
-    "S101", # assert
+    "D100",    # undocumented-public-module
+    "D101",    # undocumented-public-class
+    "D102",    # undocumented-public-method
+    "D103",    # undocumented-public-function
+    "D104",    # undocumented-public-package
+    "D105",    # undocumented-magic-method
+    "D106",    # undocumented-public-nested-class
+    "D107",    # undocumented-public-init
+    "S101",    # assert
     "PLR2004", # magic-value-comparison
-    "ANN", # flake8-annotations
-    "INP001", # implicit-namespace-package
+    "ANN",     # flake8-annotations
+    "INP001",  # implicit-namespace-package
 ]
 
 [tool.ruff.lint.isort]
@@ -102,3 +100,18 @@ convention = "google"
 
 [tool.setuptools.dynamic]
 readme = { file = ["README.md"], content-type = "text/markdown" }
+
+[tool.tox]
+requires = ["tox-uv"]
+env_list = ["lint", { product = [["typecheck"], ["py312", "py313", "py314"]] }]
+
+[tool.tox.env.lint]
+description = "Lint: Ruff"
+no_package = true
+deps = "ruff"
+commands = [["ruff", "check", "."], ["ruff", "format", "--check", "."]]
+
+[tool.tox.env.typecheck]
+description = "Type: Pyrefly"
+deps = "pyrefly"
+commands = [["python", "-m", "pyrefly", "check"]]
