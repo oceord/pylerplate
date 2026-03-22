@@ -26,7 +26,7 @@ dev: hooks ## Initialize local development
 
 hooks: ## Install git hooks
 	@echo "Setting up pre-commit hooks..." && \
-	uvx pre-commit install && \
+	uvx --with pre-commit-uv pre-commit install && \
 	echo "Done."
 
 build: ## Build distribution artifacts
