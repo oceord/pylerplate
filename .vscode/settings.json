@@ -17,9 +17,9 @@
     "python.analysis.typeEvaluation.strictDictionaryInference": true,
     "python.analysis.typeEvaluation.strictListInference": true,
     "python.analysis.typeEvaluation.strictSetInference": true,
-    "python.languageServer": "Default",
-    "python.pyrefly.disableLanguageServices": true,
+    "python.languageServer": "Pylance",
     "python.testing.autoTestDiscoverOnSaveEnabled": false,
+    "ty.disableLanguageServices": true,
     /* Editor settings by language **/
     "[markdown]": {
         "editor.defaultFormatter": "yzhang.markdown-all-in-one"

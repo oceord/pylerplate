@@ -17,9 +17,6 @@ dev = []
 [tool.codespell]
 ignore-words = ".codespell-ignore"
 
-[tool.pyrefly]
-project-includes = ["src", "tests", "noxfile.py"]
-
 [tool.ruff]
 extend-include = ["tests/**/*.py", "noxfile.py"]
 fix = true
@@ -41,8 +38,8 @@ ignore = [
     "D106", # undocumented-public-nested-class
     "D107", # undocumented-public-init
 
-    # --- Recommended by Ruff (Formatter Compatibility) ---
-    # These rules are disabled to avoid conflicts with the Ruff formatter.
+    # --- Recommended by ruff (Formatter Compatibility) ---
+    # These rules are disabled to avoid conflicts with the ruff formatter.
     # See: https://docs.astral.sh/ruff/formatter/#conflicting-lint-rules
     "W191",   # tab-indentation
     "E111",   # indentation-with-invalid-multiple
@@ -103,15 +100,16 @@ readme = { file = ["README.md"], content-type = "text/markdown" }
 
 [tool.tox]
 requires = ["tox-uv"]
-env_list = ["lint", { product = [["typecheck"], ["py312", "py313", "py314"]] }]
+env_list = ["lint", "typecheck"]
 
 [tool.tox.env.lint]
-description = "Lint: Ruff"
+description = "Lint: ruff"
 no_package = true
 deps = "ruff"
-commands = [["ruff", "check", "."], ["ruff", "format", "--check", "."]]
+commands = [["ruff", "check"], ["ruff", "format", "--check"]]
 
 [tool.tox.env.typecheck]
-description = "Type: Pyrefly"
-deps = "pyrefly"
-commands = [["python", "-m", "pyrefly", "check"]]
+description = "Type: ty"
+no_package = false
+deps = "ty"
+commands = [["ty", "check"]]

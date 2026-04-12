@@ -1,13 +1,12 @@
 # pylerplate
 
-![Python](https://img.shields.io/badge/python-006d98?style=for-the-badge&logo=python&logoColor=ffc600)
-![uv](https://img.shields.io/badge/uv-DE5FE9?style=for-the-badge&logo=astral&logoColor=white)
-![Ruff](https://img.shields.io/badge/ruff-D7FF64?style=for-the-badge&logo=ruff&logoColor=000000)
-![Pyrefly](https://img.shields.io/badge/pyrefly-FF6B35?style=for-the-badge&logo=meta&logoColor=white)
-![Tox](https://img.shields.io/badge/tox-grey?style=for-the-badge)
+![python](https://img.shields.io/badge/python-006d98?style=for-the-badge&logo=python&logoColor=ffc600)
+![uv](https://img.shields.io/badge/uv-DE5FE9?style=for-the-badge&logo=uv&logoColor=white)
+![ruff](https://img.shields.io/badge/ruff-D7FF64?style=for-the-badge&logo=ruff&logoColor=000000)
+![ty](https://img.shields.io/badge/ty-24B6E0?style=for-the-badge&logo=ty&logoColor=white)
+![tox](https://img.shields.io/badge/tox-grey?style=for-the-badge)
 ![pre-commit](https://img.shields.io/badge/pre--commit-FAB040?style=for-the-badge&logo=precommit&logoColor=black)
-![Make](https://img.shields.io/badge/make-3e474a?style=for-the-badge&logo=gnu&logoColor=ffffff)
-![VSCode](https://img.shields.io/badge/vscode-2c2c32?style=for-the-badge&logo=visualstudiocode&logoColor=22a8f1)
+![make](https://img.shields.io/badge/make-3e474a?style=for-the-badge&logo=gnu&logoColor=ffffff)
 
 > A modern, minimal Python project boilerplate with batteries included
 
@@ -16,11 +15,11 @@ It comes pre-configured with modern development tools, sensible defaults, and a 
 
 ## Features
 
-- **Modern Python tooling** - uv, Ruff, Pyrefly, Tox, and pre-commit configured out-of-the-box
+- **Modern Python tooling** - uv, ruff, ty, tox, and pre-commit configured out-of-the-box
 - **Git Hooks** - Automated pre-commit checks to ensure code quality before every commit
 - **Dependency management** - Fast, reliable dependency resolution with uv
 - **Code quality** - Automatic formatting and comprehensive linting
-- **Type checking** - Static analysis with Pyrefly
+- **Type checking** - Static analysis with ty
 - **Testing framework** - Tox environments for isolated test runs
 - **Standards compliant** - Follows PEP standards and Python best practices
 - **Makefile automation** - Common tasks accessible via simple make commands
@@ -84,7 +83,7 @@ uv add --dev pytest pytest-cov
 
 - Search for `TODO` comments and address them
 - Review and update `README.md` (replace this file)
-- Adjust Ruff and Pyrefly settings as needed
+- Adjust ruff and ty settings as needed
 
 ### Setup
 
@@ -131,7 +130,7 @@ uvx ruff format
 
 # Lint code
 uvx ruff check
-uvx pyrefly check
+uvx ty check
 
 # Run tests
 uvx --with tox-uv tox
@@ -174,11 +173,11 @@ uvx --with tox-uv tox -e py312-typecheck    # Run type checking only
 | Tool           | Purpose                                                                | Documentation                              |
 | -------------- | ---------------------------------------------------------------------- | ------------------------------------------ |
 | **uv**         | Fast Python package installer and resolver                             | [docs](https://docs.astral.sh/uv/)         |
-| **Ruff**       | Extremely fast Python linter and formatter                             | [docs](https://docs.astral.sh/ruff/)       |
-| **Pyrefly**    | Modern type checker for Python                                         | [docs](https://pyrefly.org/en/docs/)       |
-| **Tox**        | Flexible test automation                                               | [docs](https://tox.wiki/)                  |
+| **ruff**       | Extremely fast Python linter and formatter                             | [docs](https://docs.astral.sh/ruff/)       |
+| **ty**         | Modern type checker for Python                                         | [docs](https://docs.astral.sh/ty/)         |
+| **tox**        | Flexible test automation                                               | [docs](https://tox.wiki/)                  |
 | **pre-commit** | Framework for managing and maintaining multi-language pre-commit hooks | [docs](https://pre-commit.com/)            |
-| **Make**       | Task automation and workflow management                                | [docs](https://www.gnu.org/software/make/) |
+| **make**       | Task automation and workflow management                                | [docs](https://www.gnu.org/software/make/) |
 
 ## Usage Scenarios
 
@@ -212,7 +211,7 @@ See [`LICENSE`](./LICENSE) for more information.
 ## Acknowledgements
 
 - [AlexanderWillner](https://github.com/AlexanderWillner) for the elegant Makefile [example](https://github.com/AlexanderWillner/python-boilerplate/blob/master/Makefile)
-- The teams behind [uv](https://docs.astral.sh/uv/), [Ruff](https://docs.astral.sh/ruff/), [Pyrefly](https://pyrefly.org/), [Tox](https://tox.wiki/),, and [pre-commit](https://pre-commit.com/) for their excellent tools
+- The teams behind [uv](https://docs.astral.sh/uv/), [ruff](https://docs.astral.sh/ruff/), [ty](https://docs.astral.sh/ty/), [tox](https://tox.wiki/), and [pre-commit](https://pre-commit.com/) for their excellent tools
 
 ## Support
 

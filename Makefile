@@ -45,10 +45,10 @@ format: ## Format source code
 	echo "Done."
 
 check: ## Lint and static analysis
-	@echo "Running static analysis (Ruff & Pyrefly)..." && \
+	@echo "Running static analysis (ruff & ty)..." && \
 	uvx ruff check && \
 	uvx ruff format --check && \
-	uvx pyrefly check && \
+	uvx ty check && \
 	echo "Analysis complete."
 
 tox: ## Run full test matrix

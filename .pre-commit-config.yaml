@@ -15,12 +15,13 @@ repos:
       args: [ --fix ]
     - id: ruff-format
     - id: ruff-check
-- repo: https://github.com/facebook/pyrefly-pre-commit
-  rev: 0.57.1
+- repo: local
   hooks:
-    - id: pyrefly-check
-      pass_filenames: false
-      language: system
+    - id: ty-check
+      name: ty-check
+      entry: uvx ty check
+      language: python
+      types: [python]
 - repo: https://github.com/Yelp/detect-secrets
   rev: v1.5.0
   hooks:
